@@ -1,2 +1,1 @@
-git config user.name "k0d3r"
-git config user.email ""
+git config user.name "k0d3r" && git config user.email ""
