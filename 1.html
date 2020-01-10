@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    
+    <head>
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="initial-scale=1">
+
+        <title>1</title>
+
+        <link rel="icon" type="image/png" href="https://vuejs.org/images/icons/favicon-32x32.png">
+
+        <style media="screen">
+
+            body {
+                margin: 20px 25px;
+                padding: 0;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 13px;
+                color: #222;
+                text-decoration: none;
+                background: #fff;
+            }
+
+            h1 {
+                margin: 0 0 15px 0;
+                font-size: 1.8em;
+            }
+
+            p {
+                margin: 0 0 15px 0;
+            }
+
+            input {
+                padding: 5px 9px 6px 9px;
+                font-family: inherit;
+                font-size: inherit;
+            }
+
+            .square {
+                width: 100px;
+                height: 100px;
+                margin: 0 20px 10px 0;
+                background: gray;
+            }
+            .red {
+                background: red;
+            }
+
+        </style>
+
+        <!-- Linking Vue in the <head> prevents initial browser flickers -->
+        <script src="https://unpkg.com/vue"></script>
+    
+    </head>
+
+    <body>
+        
+        <div id="app">
+
+            <h1 v-once>{{ title }}</h1> <!-- v-once on a tag means the content inside the tag will only be rendered once, subsequent changes to the title property will not be rendered -->
+            <h1>{{ title }}</h1> <!-- {{ title }} will always update when title is changed -->
+            
+            <p>{{ message }}</p>
+            
+            <!--
+                All functions in the HTML are executed whenever the DOM is updated OR when a data property is updated
+                It has to re-run the functions cos it does not know if the function uses any data properties
+            -->
+            <p>{{ sayHello() }}</p>
+
+            <p>
+                <!-- String inperpolation does not work inside HTML attributes, use data binding instead -->
+                <a v-bind:href="link" target="_blank">Google</a>
+                <br><br>
+                <!-- Shorthand bind syntax -->
+                <a :href="link" target="_blank">Google</a>
+            </p>
+            
+            <p>{{ rawHtml }}</p>
+            <p v-html="rawHtml"></p> <!-- Do not use v-html cos of exposure to XSS -->
+
+            <p>
+                <input type="text" v-on:input="changeTitle">
+            </p>
+            
+            <p>
+                <button v-on:click="standardFunction">standardFunction()</button>
+                <br><br>
+                <button v-on:click="methodFunction">methodFunction()</button>
+                <br><br>
+                <button v-on:click="arrowFunction">arrowFunction()</button>
+                <br><br>
+                <button v-on:click="methodFunctionWithParam('John')">methodFunctionWithParam('John')</button>
+                <br><br>
+                <button v-on:click="methodFunctionWithParamAndEvent('Jack', $event)">methodFunctionWithParamAndEvent('Jack', $event)</button>
+            </p>
+
+            <p>
+                <button v-on:click="incrementCounter">Increment Counter</button>
+                <br>
+                {{ counter }}
+            </p>
+
+            <!-- Shorthands -->
+            <p>
+                <button v-on:click="demoFunction">demoFunction()</button>
+                <button @click="demoFunction">demoFunction()</button> <!-- v-on can be replaced with @ -->
+            </p>
+
+            <p>
+                <a v-bind:href="link" target="_blank">Google</a>
+                <a :href="link" target="_blank">Google</a> <!-- v-bind can be replaced with : -->
+            </p>
+            <!-- /Shorthands -->
+
+            <!-- Conditional Styling -->
+            <!-- Even this simple color update updates the DOM and causes functions in the template to be re-run -->
+            <!--  In the :class object, they key is the class to apply and the value is the boolean to apply the class or not -->
+            <div class="square" @click="applyRedStyle = !applyRedStyle" :class="{red: applyRedStyle}"></div>
+            <div class="square" :class="{red: applyRedStyle}"></div>
+            <!-- /Conditional Styling -->
+
+            <!-- Lists -->
+            <!-- v-for replicates the element on which it is placed -->
+            <ul>
+                <li v-for="n in 10">{{ n }}</li>
+            </ul>
+
+            <ul>
+                <li v-for="(fruit, index) in fruits">{{ fruit }} ({{ index + 1 }})</li>
+            </ul>
+
+            <ul>
+                <li v-for="(person, index) in people">{{ person.name }} ({{ index + 1 }})</li>
+            </ul>
+
+            <hr>
+
+            <ul v-for="person in people">
+                <li v-for="(value, key, index) in person">{{ _.startCase(key) }}: {{ value }}</li>
+            </ul>
+            <!-- /Lists -->
+
+            <!-- Show/Hide - v-if -->
+            <!--
+                v-if: Attach or detach elements from the DOM
+                v-if removes elements from the DOM. It does not hide them.
+                To hide (style="display:none;") use v-show="booleanCondition"
+            -->
+            <p v-if="show">You can see me!</p>
+            <p v-else>Now you see me!</p>
+            <!-- <template> tags are not shown by browsers but Vue overides this behaviour and shows them -->
+            <template v-if="!show">
+                Template Content
+            </template>
+            <button @click="show = !show">Switch</button>
+            <!-- /Show/Hide - v-if -->
+
+            <!-- Nested Data Prop -->
+            <p>{{ someSetting.value }}</p>
+            <p>{{ someSetting['value'] }}</p>
+            <!-- /Nested Data Prop -->
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js" integrity="sha256-VeNaFBVDhoX3H+gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
+        
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    title: 'Default Title',
+                    message: 'Message',
+                    link: 'http://google.com/',
+                    rawHtml: '<a href="http://google.com/" target="_blank">Google</a>',
+                    counter: 0,
+                    applyRedStyle: false,
+                    fruits: ['apples', 'oranges', 'bananas'],
+                    people: [
+                        { name: 'Max', age: 27, 'email address': 'max@gmail.com' },
+                        { name: 'Michael', age: 37 }
+                    ],
+                    show: true,
+                    someSetting: {
+                        value: 'Setting Value'
+                    }
+                },
+                /*
+                    Methods are called every time the DOM is updated or when a data property is changed
+                    Only use methods when you need to run them every time the DOM is updated
+                    Methods do not know what properties they use so they are re-run on every DOM update
+                */
+                methods: {
+                    changeTitle(event) {
+                        this.title = event.target.value;
+                        console.log(event);
+                    },
+                    // Called from the HTML
+                    sayHello() {
+                        console.log('sayHello() called');
+                        return `Hello ${_.lowerFirst( this.message.toUpperCase() )}`;
+                    },
+                    demoFunction() {
+                        console.log('demoFunction() called');
+                    },
+                    standardFunction: function() {
+                        console.log(this); // Refers to Vue
+                    },
+                    methodFunction() {
+                        console.log(this); // Refers to Vue
+                    },
+                    arrowFunction: () => {
+                        console.log(this); // Refers to Window
+                    },
+                    methodFunctionWithParam(name) {
+                        console.log(name);
+                        console.log(event); // NOTE: event is not passed but somehow it is available. It's a reserved word: https://www.w3schools.com/js/js_reserved.asp and is a reference to window.event
+                        console.log(event.target.innerText);
+                        console.log(history);
+                        console.log(window);
+                    },
+                    methodFunctionWithParamAndEvent(name, event) {
+                        console.log(name);
+                        console.log(event);
+                        console.log(event.target.innerText)
+                    },
+                    incrementCounter() {
+                        this.counter++;
+                    },
+                    eventVariable() {
+                        console.log(event);
+                    }
+                },
+                /*
+                    Computed properties take into consideration the variables that are used in the method
+                    If a property is updated that is not used in the computed function, the computed function is not is run
+                    Computed properties are cached
+                    Computed properties always need to work sync, async functions do not work
+                */
+                computed: {
+                    
+                }
+            });
+        </script>
+        
+    </body>
+
+</html>

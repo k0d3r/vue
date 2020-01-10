@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="initial-scale=1">
+
+        <title>Template Tag</title>
+
+        <style media="screen">
+
+        </style>
+
+        <script src="https://unpkg.com/vue"></script>
+
+    </head>
+
+    <body>
+
+        <div id="app">
+
+            <!-- Shown by Vue -->
+            <template>
+                <p>Template content in #app</p>
+            </template>
+
+            <h1>{{ showTitle() }}</h1>
+            <h2>{{ count }}</h2>
+
+            <button @click="count++">Increment count</button>
+
+        </div>
+
+        <!-- Not rendered in the browser -->
+        <template>
+            Template content in &lt;body&gt;
+        </template>
+
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    count: 0
+                },
+                methods: {
+                    showTitle() {
+                        console.log('showTitle() called.')
+                    }
+                }
+            });
+
+        </script>
+
+    </body>
+
+</html>

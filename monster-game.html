@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="initial-scale=1">
+
+        <title>-</title>
+
+        <link rel="icon" type="image/png" href="https://i.ibb.co/3WGcJ5X/layers.png">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700&display=swap">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="css/app.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+
+    </head>
+
+    <body id="monster">
+
+        <div id="app" class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-sm">
+
+                    <h4>You</h4>
+
+                    <div class="health">
+                        <div class="health-bar"></div>
+                    </div>
+
+                </div> <!-- /.col-sm -->
+
+                <div class="col-sm">
+                    
+                    <h4>Monster</h4>
+
+                    <div class="health">
+                        <div class="health-bar"></div>
+                    </div>
+
+                </div> <!-- /.col-sm -->
+
+            </div> <!-- /.row -->
+
+            <div class="row">
+
+                <div class="col-sm text-center">
+
+                   <button type="button" class="mt-4 btn btn-success">Start New Game</button>
+
+                </div> <!-- /.col-sm -->
+
+            </div> <!-- /.row -->
+
+            <div class="row">
+
+                <div class="actions col-sm text-center">
+
+                   <button type="button" class="mt-4 btn btn-danger">Attack</button>
+                   <button type="button" class="mt-4 btn btn-warning">Special Attack</button>
+                   <button type="button" class="mt-4 btn btn-info">Heal</button>
+                   <button type="button" class="mt-4 btn btn-light">Give Up</button>
+
+                </div> <!-- /.col-sm -->
+
+            </div> <!-- /.row -->
+
+            <div class="row">
+
+                <div class="game-progress mt-4 col-sm text-center">
+
+                   <h4>Progress</h4>
+
+                   <ul class="list-group list-group-flush">
+                       <li class="list-group-item">a</li>
+                       <li class="list-group-item">b</li>
+                       <li class="list-group-item">c</li>
+                   </ul>
+
+                </div> <!-- /.col-sm -->
+
+            </div> <!-- /.row -->
+
+        </div> <!-- /#app & /.container-fluid -->
+
+        <script>
+            const app = new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        title: 'Monster',
+                        content: 'Content.'
+                    };
+                },
+                mounted() {
+                    document.title = this.title;
+                },
+                computed: {
+
+                },
+                methods: {
+                    
+                },
+                watch: {
+                    
+                }
+            });
+        </script>
+            
+    </body>
+
+</html>
