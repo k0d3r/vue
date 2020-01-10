@@ -84,8 +84,8 @@ input[type="url"]:focus {
     text-align: center;
 }
 #monster .btn-success {
-    background-color: #558b2f;
     border-color: #558b2f;
+    background-color: #558b2f;
 }
 #monster .health {
     padding: 2px;
