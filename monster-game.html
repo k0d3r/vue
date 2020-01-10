@@ -36,7 +36,7 @@
                     <h4>You</h4>
 
                     <div class="health">
-                        <div class="health-bar"></div>
+                        <div class="health-bar text-center" :style="{width: `${playerHealth}%`}">{{ playerHealth }}</div>
                     </div>
 
                 </div> <!-- /.col-sm -->
@@ -46,31 +46,31 @@
                     <h4>Monster</h4>
 
                     <div class="health">
-                        <div class="health-bar"></div>
+                        <div class="health-bar text-center" :style="{width: `${monsterHealth}%`}">{{ monsterHealth }}</div>
                     </div>
 
                 </div> <!-- /.col-sm -->
 
             </div> <!-- /.row -->
 
-            <div class="row">
+            <div class="row" v-if="!gameIsRunning">
 
                 <div class="col-sm text-center">
 
-                   <button type="button" class="mt-4 btn btn-success">Start New Game</button>
+                   <button type="button" class="mt-4 btn btn-success" @click="startGame">Start New Game</button>
 
                 </div> <!-- /.col-sm -->
 
             </div> <!-- /.row -->
 
-            <div class="row">
+            <div class="row" v-else>
 
                 <div class="actions col-sm text-center">
 
-                   <button type="button" class="mt-4 btn btn-danger">Attack</button>
-                   <button type="button" class="mt-4 btn btn-warning">Special Attack</button>
-                   <button type="button" class="mt-4 btn btn-info">Heal</button>
-                   <button type="button" class="mt-4 btn btn-light">Give Up</button>
+                   <button type="button" class="mt-4 btn btn-danger" @click="attack">Attack</button>
+                   <button type="button" class="mt-4 btn btn-warning" @click="specialAttack">Special Attack</button>
+                   <button type="button" class="mt-4 btn btn-info" @click="heal">Heal</button>
+                   <button type="button" class="mt-4 btn btn-light" @click="giveUp">Give Up</button>
 
                 </div> <!-- /.col-sm -->
 
@@ -95,12 +95,16 @@
         </div> <!-- /#app & /.container-fluid -->
 
         <script>
+            const log = data => console.log(data);
+            
             const app = new Vue({
                 el: '#app',
                 data() {
                     return {
                         title: 'Monster',
-                        content: 'Content.'
+                        playerHealth: 100,
+                        monsterHealth: 100,
+                        gameIsRunning: false
                     };
                 },
                 mounted() {
@@ -110,7 +114,23 @@
 
                 },
                 methods: {
-                    
+                    startGame() {
+                        this.gameIsRunning = true;
+                        this.playerHealth = 100;
+                        this.monsterHealth = 100;
+                    },
+                    attack() {
+                        log('attack() called.')
+                    },
+                    specialAttack() {
+
+                    },
+                    heal() {
+
+                    },
+                    giveUp() {
+
+                    }
                 },
                 watch: {
                     

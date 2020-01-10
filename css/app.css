@@ -85,13 +85,14 @@ input[type="url"]:focus {
 }
 #monster .health {
     padding: 2px;
-    border: 1px solid #2e7d32;
+    border: 1px solid #1b5e20;
 }
 #monster .health .health-bar {
-    width: 30%;
-    height: 25px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 120%;
     color: #fff;
-    background: #81c784;
+    background: #558b2f;
 }
 #monster .actions {
     padding: 20px 0;
