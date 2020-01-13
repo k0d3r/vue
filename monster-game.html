@@ -120,23 +120,35 @@
                         this.monsterHealth = 100;
                     },
                     attack() {
-                        this.playerHealth -= this.generateDamage(6, 10);
+                        this.monsterHealth -= this.generateDamage(3, 10);
                         if ( this.checkIfWon() ) return;
-                        this.monsterHealth -= this.generateDamage(3, 12);
-                        this.checkIfWon();
+                        this.monsterAttack();
                     },
                     specialAttack() {
-                        
+                        this.monsterHealth -= this.generateDamage(10, 20);
+                        if ( this.checkIfWon() ) return;
+                        this.monsterAttack();
                     },
                     heal() {
+                        if (this.playerHealth <= 90) {
+                            this.playerHealth += 10;
+                        }
+                        else {
+                            this.playerHealth = 100;
+                        }
 
+                        this.monsterAttack();
                     },
                     giveUp() {
-
+                        this.gameIsRunning = false;
                     },
                     generateDamage(min, max) {
                         let rand = Math.floor((Math.random() * max) + 1); // Generate a random integer between 1 and max inclusive
                         return Math.max(rand, min); // Set rand to be the max value of min and rand
+                    },
+                    monsterAttack() {
+                        this.playerHealth -= this.generateDamage(3, 12);
+                        this.checkIfWon();
                     },
                     checkIfWon() {
                         if (this.monsterHealth <= 0) {

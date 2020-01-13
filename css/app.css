@@ -100,7 +100,9 @@ input[type="url"]:focus {
 #monster .health .health-bar {
     height: 30px;
     line-height: 30px;
+    padding: 0 10px;
     font-size: 120%;
+    text-align: center;
     color: #fff;
     background: #558b2f;
 }
