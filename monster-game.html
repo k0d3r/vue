@@ -35,7 +35,7 @@
 
                     <h4>You</h4>
 
-                    <div class="health"> 
+                    <div class="health">
                         <div class="health-bar text-center" :style="{width: `${playerHealth}%`}">{{ playerHealth }}</div>
                     </div>
 
@@ -120,16 +120,33 @@
                         this.monsterHealth = 100;
                     },
                     attack() {
-                        log('attack() called.')
+                        this.playerHealth -= this.generateDamage(6, 10);
+                        if ( this.checkIfWon() ) return;
+                        this.monsterHealth -= this.generateDamage(3, 12);
+                        this.checkIfWon();
                     },
                     specialAttack() {
-
+                        
                     },
                     heal() {
 
                     },
                     giveUp() {
 
+                    },
+                    generateDamage(min, max) {
+                        let rand = Math.floor((Math.random() * max) + 1); // Generate a random integer between 1 and max inclusive
+                        return Math.max(rand, min); // Set rand to be the max value of min and rand
+                    },
+                    checkIfWon() {
+                        if (this.monsterHealth <= 0) {
+                            confirm('You won! New game?') ? this.startGame() : this.gameIsRunning = false;
+                            return true;
+                        }
+                        else if (this.playerHealth <= 0) {
+                            confirm('You lost! New game?') ? this.startGame() : this.gameIsRunning = false;
+                            return true;
+                        }
                     }
                 },
                 watch: {
