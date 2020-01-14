@@ -122,14 +122,14 @@
                     attack() {
                         const damage = this.generateDamage(3, 10);
                         this.monsterHealth -= damage;
-                        this.turns.unshift({ isPlayer: true, text: `Player hits Monster for ${damage}` });
+                        this.turns.unshift({ isPlayer: true, text: `Player hit Monster for ${damage}` });
                         if ( this.checkIfWon() ) return;
                         this.monsterAttack();
                     },
                     specialAttack() {
                         const damage = this.generateDamage(10, 20);
                         this.monsterHealth -= damage;
-                        this.turns.unshift({ isPlayer: true, text: `Player hits Monster with special attack for ${damage}` });
+                        this.turns.unshift({ isPlayer: true, text: `Player hit Monster with special attack for ${damage}` });
                         if ( this.checkIfWon() ) return;
                         this.monsterAttack();
                     },
@@ -148,7 +148,7 @@
                     monsterAttack() {
                         const damage = this.generateDamage(3, 12);
                         this.playerHealth -= damage;
-                        this.turns.unshift({ isPlayer: false, text: `Monster hits Player for ${damage}` });
+                        this.turns.unshift({ isPlayer: false, text: `Monster hit Player for ${damage}` });
                         this.checkIfWon();
                     },
                     checkIfWon() {

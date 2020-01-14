@@ -109,12 +109,14 @@ input[type="url"]:focus {
 #monster .health {
     padding: 2px;
     border: 1px solid #1b5e20;
+    border-radius: 2px;
 }
 #monster .health .health-bar {
     height: 30px;
     line-height: 30px;
     padding: 0 10px;
     display: inline-table;
+    border-radius: 2px;
     font-size: 120%;
     color: #fff;
     background: #558b2f;
@@ -132,10 +134,12 @@ input[type="url"]:focus {
 #monster #game-progress ul li {
     margin: 0 0 3px 0;
     padding: 8px 16px;
+    border-radius: 2px;
+    color: #fff;
 }
 #monster #game-progress ul li.player-turn {
-    background: #c5e1a5;
+    background: #4caf50;
 }
 #monster #game-progress ul li.monster-turn {
-    background: #ef9a9a;
+    background: #e65100;
 }
