@@ -152,12 +152,13 @@
                         this.checkIfWon();
                     },
                     checkIfWon() {
-                        if (this.monsterHealth <= 0) {
-                            confirm('You won! New game?') ? this.startGame() : this.gameIsRunning = false;
-                            return true;
-                        }
-                        else if (this.playerHealth <= 0) {
-                            confirm('You lost! New game?') ? this.startGame() : this.gameIsRunning = false;
+                        let message;
+
+                        if (this.monsterHealth <= 0) message = 'You won! 😊';
+                        else if (this.playerHealth <= 0) message = 'You lost! 😞';
+
+                        if (this.monsterHealth <= 0 || this.playerHealth <= 0) {
+                            confirm(`${message} New game?`) ? this.startGame() : this.gameIsRunning = false;
                             return true;
                         }
                     }

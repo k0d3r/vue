@@ -39,10 +39,23 @@ p {
     /* box-shadow: none !important; */ /* Outline around buttons on focus */
     outline: none;
 }
+
 .btn-warning {
     color: #fff;
 }
-.btn-warning:focus, .btn-warning:active, .btn-warning:hover {
+.btn-warning:focus, .btn-warning:hover {
+    color: white !important;
+}
+
+.btn-light {
+    border-color: #cfd8dc;
+    background: #cfd8dc;
+}
+.btn-light:hover {
+    border-color: #b0bec5;
+    background: #b0bec5;
+}
+.btn-light, .btn-light:hover, .btn-light:focus {
     color: white !important;
 }
 
