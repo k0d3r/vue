@@ -30,7 +30,7 @@ p {
     margin: 0 0 15px 0;
 }
 
-/*----- Bootstrap Overides */
+/*---------- Bootstrap Overides */
 .btn {
     padding: 0.20rem 0.6rem 0.22rem 0.6rem;
     font-size: 0.81rem;
@@ -73,18 +73,18 @@ input[type="url"]:focus {
     border-color: #757575;
 }
 
-/*----------------------------------------------------------------------
-    App
-----------------------------------------------------------------------*/
-
-#app {
-    padding: 15px;
-    background: #fff;
+/*---------- Vue */
+[v-cloak] {
+    display: none;
 }
 
 /*----------------------------------------------------------------------
     Monster
 ----------------------------------------------------------------------*/
+#monster #app {
+    padding: 15px;
+    background: #fff;
+}
 #monster h4 {
     font-weight: 500;
     text-align: center;
