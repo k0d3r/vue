@@ -112,6 +112,17 @@ input[type="url"]:focus {
 #monster .actions button {
     margin: 0 10px 0 0;
 }
-#monster .list-group {
-    text-align: left;
+#monster #game-progress {
+    max-width: 400px;
+    margin: 0 auto;
+}
+#monster #game-progress ul li {
+    margin: 0 0 3px 0;
+    padding: 8px 16px;
+}
+#monster #game-progress ul li.player-turn {
+    background: #c5e1a5;
+}
+#monster #game-progress ul li.monster-turn {
+    background: #ef9a9a;
 }

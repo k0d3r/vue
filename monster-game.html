@@ -76,16 +76,14 @@
 
             </div> <!-- /.row -->
 
-            <div class="row">
+            <div class="row" v-if="turns.length > 0">
 
-                <div class="game-progress mt-4 col-sm text-center">
+                <div id="game-progress" class="mt-4 col-sm text-center">
 
                    <h4>Progress</h4>
 
-                   <ul class="list-group list-group-flush">
-                       <li class="list-group-item">a</li>
-                       <li class="list-group-item">b</li>
-                       <li class="list-group-item">c</li>
+                   <ul class="list-group list-group-flush text-center">
+                       <li class="list-group-item" v-for="turn in turns" :class="turn.isPlayer ? 'player-turn' : 'monster-turn'">{{ turn.text }}</li>
                    </ul>
 
                 </div> <!-- /.col-sm -->
@@ -104,7 +102,8 @@
                         title: 'Monster',
                         gameIsRunning: false,
                         playerHealth: 100,
-                        monsterHealth: 100
+                        monsterHealth: 100,
+                        turns: []
                     };
                 },
                 mounted() {
@@ -118,19 +117,25 @@
                         this.gameIsRunning = true;
                         this.playerHealth = 100;
                         this.monsterHealth = 100;
+                        this.turns = [];
                     },
                     attack() {
-                        this.monsterHealth -= this.generateDamage(3, 10);
+                        const damage = this.generateDamage(3, 10);
+                        this.monsterHealth -= damage;
+                        this.turns.unshift({ isPlayer: true, text: `Player hits Monster for ${damage}` });
                         if ( this.checkIfWon() ) return;
                         this.monsterAttack();
                     },
                     specialAttack() {
-                        this.monsterHealth -= this.generateDamage(10, 20);
+                        const damage = this.generateDamage(10, 20);
+                        this.monsterHealth -= damage;
+                        this.turns.unshift({ isPlayer: true, text: `Player hits Monster with special attack for ${damage}` });
                         if ( this.checkIfWon() ) return;
                         this.monsterAttack();
                     },
                     heal() {
                         this.playerHealth = this.playerHealth <= 90 ? this.playerHealth + 10 : 100;
+                        this.turns.unshift({ isPlayer: true, text: 'Player heals for 10' });
                         this.monsterAttack();
                     },
                     giveUp() {
@@ -141,7 +146,9 @@
                         return Math.max(rand, min); // Set rand to be the max value of min and rand
                     },
                     monsterAttack() {
-                        this.playerHealth -= this.generateDamage(3, 12);
+                        const damage = this.generateDamage(3, 12);
+                        this.playerHealth -= damage;
+                        this.turns.unshift({ isPlayer: false, text: `Monster hits Player for ${damage}` });
                         this.checkIfWon();
                     },
                     checkIfWon() {
