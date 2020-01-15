@@ -99,7 +99,7 @@
                 el: '#app',
                 data() {
                     return {
-                        title: 'Monster',
+                        title: 'Monster Game',
                         gameIsRunning: false,
                         playerHealth: 100,
                         monsterHealth: 100,
@@ -140,6 +140,7 @@
                     },
                     giveUp() {
                         this.gameIsRunning = false;
+                        this.turns.length = 0;
                     },
                     generateDamage(min, max) {
                         let rand = Math.floor((Math.random() * max) + 1); // Generate a random integer between 1 and max inclusive
