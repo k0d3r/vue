@@ -1,0 +1,15 @@
+https://cli.vuejs.org/
+
+npm install -g vue-cli
+
+# Initialize a new project with the "webpack-simple" template
+vue init webpack-simple {dir-name}
+
+npm install webpack-cli --save-dev
+npm install gulp-babel @babel/core @babel/preset-env --save-dev
+
+========= REDO
+
+npm install -g @vue/cli @vue/cli-service-global
+
+npm install webpack-cli
