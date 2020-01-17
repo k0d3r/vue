@@ -1,15 +1,58 @@
+----------------------------------------------------------------------
+    Vue CLI Setup
+----------------------------------------------------------------------
+
 https://cli.vuejs.org/
 
-npm install -g vue-cli
+# Install the Vue CLI (The cli-service-global package is for vue serve)
+npm install -g @vue/cli @vue/cli-service-global
+
+# Create a new app
+vue create {dir-name}
+
+# Serve the app
+npm run serve -- --port 3000
+
+# Build the app
+npm run build
+
+# Run the Vue UI
+# For remote servers add "--host 0.0.0.0" as the UI server is listening on localhost
+vue ui --port 3000 --headless
+
+
+
+========= REDO
+
+npm install gulp-babel @babel/core @babel/preset-env --save-dev
+
+npm install webpack-cli
+
 
 # Initialize a new project with the "webpack-simple" template
 vue init webpack-simple {dir-name}
 
-npm install webpack-cli --save-dev
-npm install gulp-babel @babel/core @babel/preset-env --save-dev
+----------------------------------------------------------------------
+    Yarn
+----------------------------------------------------------------------
 
-========= REDO
+https://yarnpkg.com/en/
 
-npm install -g @vue/cli @vue/cli-service-global
+# Installation
+https://yarnpkg.com/en/docs/install
 
-npm install webpack-cli
+npm install -g yarn
+
+# Create a new project
+yarn init
+yarn add express dotenv ejs lodash moment morgan
+yarn add nodemon --dev
+
+# Verifies that versions of the package dependencies in the current project’s package.json match those in yarn’s lock file
+yarn check
+
+# List outdated packages
+yarn outdated
+
+# Remove a package
+yarn remove ejs
