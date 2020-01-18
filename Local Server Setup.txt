@@ -4,8 +4,16 @@
 
 https://cli.vuejs.org/
 
-# Install the Vue CLI (The cli-service-global package is for vue serve)
-npm install -g @vue/cli @vue/cli-service-global
+# Install the Vue CLI
+# If running unning: "npm install -g @vue/cli" results in "node: Permission denied"
+# Use the --unsafe-perm flag to run npm as the root account
+npm install -g @vue/cli 
+
+# Install the Vue CLI Service Global - The cli-service-global package is for vue serve
+npm install -g @vue/cli-service-global
+
+# Check version number
+vue --version
 
 # Create a new app
 vue create {dir-name}
@@ -20,9 +28,7 @@ npm run build
 # For remote servers add "--host 0.0.0.0" as the UI server is listening on localhost
 vue ui --port 3000 --headless
 
-
-
-========= REDO
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ REDO
 
 npm install gulp-babel @babel/core @babel/preset-env --save-dev
 
@@ -31,6 +37,8 @@ npm install webpack-cli
 
 # Initialize a new project with the "webpack-simple" template
 vue init webpack-simple {dir-name}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ----------------------------------------------------------------------
     Yarn
@@ -56,3 +64,4 @@ yarn outdated
 
 # Remove a package
 yarn remove ejs
+
